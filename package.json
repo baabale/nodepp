@@ -40,7 +40,7 @@
     "yargs": "*"
   },
   "devDependencies": {
-    "chai": "*",
+    "chai": "4.3.7",
     "chai-as-promised": "*",
     "chai-spies": "*",
     "jack": "*",

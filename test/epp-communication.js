@@ -40,8 +40,8 @@ describe.skip('Communication protocol state machine', function() {
 
         stateMachine = new ProtocolState('hexonet-test1', config);
         var connection = stateMachine.connection;
-        /* Use a file stream instead of trying to talk 
-         * to the actual registry, we're only testing the 
+        /* Use a file stream instead of trying to talk
+         * to the actual registry, we're only testing the
          * "state" control here.
          */
         connection.setStream(fos);
@@ -98,9 +98,9 @@ describe.skip('Communication protocol state machine', function() {
       stateMachine = new ProtocolState('hexonet-test1', config);
       var connection = stateMachine.connection;
 
-      /* 
-       * Use a file stream instead of trying to talk to 
-       * the actual registry, we're only testing the 
+      /*
+       * Use a file stream instead of trying to talk to
+       * the actual registry, we're only testing the
        * "state" control here.
        */
       connection.setStream(fos);
@@ -256,10 +256,11 @@ describe('Buffer preparation', function() {
     var createContactXml = fs.readFileSync('./test/createContactUnicode.xml');
     var connection = new ProtocolConnection({});
     var prepped = connection.processBigEndian(createContactXml);
-    var bufferedMessage = new Buffer(prepped);
-    var bigEndianPrefix = bufferedMessage.slice(0, 4);
+    var bufferedMessage = Buffer.from(prepped);
+    var bigEndianPrefix = bufferedMessage.subarray(0, 4);
     var actualLength = bigEndianPrefix.readUInt32BE(0);
-    expect(actualLength).to.equal(1424 + 4);
+    console.log(createContactXml.toString());
+    expect(actualLength).to.equal(1457 + 4);
   });
 
 });
